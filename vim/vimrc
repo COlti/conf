@@ -1,0 +1,99 @@
+" Keine Vi-Emulation, sondern Vim mit allen Erweiterungen aktivieren
+set nocompatible
+
+" Zeilennumerierung ein/ausschalten
+set number
+"set nonumber
+
+" Tabs und Zeilenenden anzeigen/NICHT anzeigen
+" (List-Modus -> "^I" fuer TABs und "$" fuer Zeilenenden)
+"set list
+set nolist
+
+" Statuszeile (ganz unten) soll anzeigen:
+" * Vim-Modus (INSERT, VISUAL, ...)
+" * Aktuelles Vim-Kommando (solange unvollstaendig)
+" * Aktuelle Zeile,Spalte + relative Position in Datei (All, Top, Bot, NN%)
+" * Aenderung von mehr als 0 Zeilen --> Anzahl der betroffenen Zeilen
+" * Statuszeile im Fenster anzeigen (0=Nie, 1=nur ab 2 Fenstern, 2=immer)
+set showmode
+set showcmd
+set ruler
+set report=0
+set laststatus=2
+
+" Hinweis in Statuszeile ab N geaenderte/geloeschte/eingefuegte Zeilen
+" (eine der beiden Zeilen funktioniert!)
+set report=0
+"set report=1
+
+" Titelzeile des Terminalfensters soll Dateinamen anzeigen
+set title
+set icon
+
+" Oeffnende Klammer kurzeitig markieren (0.5 Sek) bei Eingabe der schliessenden
+" (mps = Abkuerzung von matchpairs)
+set showmatch
+set matchpairs=(:)
+set mps+=[:]
+set mps+={:}
+set mps+=<:>
+set matchtime=2
+
+" Bildschirm "flashen" statt "piepsen" bei Eingabefehler
+set noerrorbells
+set novisualbell
+
+" Such-Einstellungen moeglichst intelligent
+" * GROSS/kleinschreibung ignorieren (ausser \C wird im Suchmuster verwendet)
+" * Kommt ein GROSSbuchstabe im Suchmuster vor --> GROSS/kleinschreibung zaehlt
+" * Bereits waehrend der Suchmustereingabe suchen (inc=inkrementell)
+" * Treffer markieren (hl=highlight)
+" * Suche ueber das Textende/den Textanfang hinaus (wrapscan)
+set ignorecase
+set smartcase
+set incsearch
+set nohlsearch
+set wrapscan
+
+" Tabulator-Einstellungen auf Breite 4
+set tabstop=4
+set shiftwidth=4
+set shiftround
+
+" Getippte Tabulatoren (NICHT) zu Leerzeichen expandieren (vorhandene nicht!)
+" (vorhandene Tabulatoren durch "1!Gexpand<CR>" in Leerzeichen umwandeln)
+set expandtab
+"set noexpandtab
+
+" Einruecken automatisch/NICHT automatisch (Ausrichtung an vorheriger Zeile)
+" (<CTRL-T> rueckt um 1 Stufe ein, <CTRL-D> rueckt um 1 Stufe aus)
+set autoindent
+"set noautoindent
+
+" Automatischer Umbruch 10 Zeichen vor rechtem Rand (0=kein Umbruch)
+" Max. Breite fuer eingefuegten Text (0=inaktiv, ueberschreibt "wrapmargin")
+set wrapmargin=10
+"set wrapmargin=0
+set textwidth=75
+"set textwidth=0
+
+" Syntax-Coloring aus/einschalten
+"syntax off
+syntax enable
+" Syntax-Schema auswaehlen + leicht anpassen
+colorscheme peachpuff
+set background=dark
+set background=light
+hi statement  ctermfg=darkblue guifg=darkblue
+hi identifier ctermfg=black    guifg=black
+
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+Plug 'gabrielelana/vim-markdown'
+
+" Initialize plugin system
+call plug#end()
